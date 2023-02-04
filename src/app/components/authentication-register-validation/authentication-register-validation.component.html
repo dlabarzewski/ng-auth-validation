@@ -12,17 +12,70 @@
                 ><mat-label>Email</mat-label
                 ><input
                   matInput
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   formControlName="email"
                 />
-                <mat-error
-                  *ngIf="form.get('email')!.invalid && form.get('email')!.dirty"
-                  >{{
-                    form.get("email")?.errors | emailValidationError
-                  }}</mat-error
-                >
+                <mat-error *ngIf="form.get('email')!.invalid">{{
+                  form.get("email")?.errors | emailValidationError
+                }}</mat-error>
               </mat-form-field>
+            </div>
+            <div formGroupName="dateOfBirth">
+              <div>
+                <mat-form-field appearance="fill"
+                  ><mat-label>Day</mat-label
+                  ><input
+                    matInput
+                    type="number"
+                    placeholder="Day"
+                    formControlName="day"
+                    min="1"
+                    max="31"
+                  />
+                  <mat-error *ngIf="form.get('dateOfBirth.day')!.invalid"
+                    >Day is invalid</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="fill"
+                  ><mat-label>Month</mat-label
+                  ><input
+                    matInput
+                    type="number"
+                    placeholder="Month"
+                    formControlName="month"
+                    min="1"
+                    max="12"
+                  />
+                  <mat-error *ngIf="form.get('dateOfBirth.month')!.invalid"
+                    >Month is invalid</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="fill"
+                  ><mat-label>Year</mat-label
+                  ><input
+                    matInput
+                    type="number"
+                    placeholder="Year"
+                    formControlName="year"
+                    [min]="getMinYear()"
+                    [max]="getMaxYear()"
+                  />
+                  <mat-error *ngIf="form.get('dateOfBirth.year')!.invalid"
+                    >Year is invalid</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <mat-error *ngIf="form.get('dateOfBirth')?.hasError('maxDay')">
+                <p>
+                  day of this month must be less or equal than
+                  {{ form.get("dateOfBirth")?.getError("maxDay") }}
+                </p>
+              </mat-error>
             </div>
             <div>
               <mat-form-field appearance="fill"
@@ -33,14 +86,9 @@
                   placeholder="Password"
                   formControlName="password"
                 />
-                <mat-error
-                  *ngIf="
-                    form.get('password')!.invalid && form.get('password')!.dirty
-                  "
-                  >{{
-                    form.get("password")?.errors | passwordValidationError
-                  }}</mat-error
-                >
+                <mat-error *ngIf="form.get('password')!.invalid">{{
+                  form.get("password")?.errors | passwordValidationError
+                }}</mat-error>
               </mat-form-field>
             </div>
             <div>
