@@ -1,0 +1,14 @@
+.page-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeee;
+    min-height: 100vh;
+}
+
+.page-cente__mat-card {
+    width: 100%;
+    max-width: 320px;
+    min-height: 274px;
+}
