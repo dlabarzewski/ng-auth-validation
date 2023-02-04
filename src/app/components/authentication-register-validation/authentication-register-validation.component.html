@@ -2,6 +2,7 @@
   <mat-card class="page-cente__mat-card">
     <mat-card-content>
       <mat-tab-group>
+        <mat-tab label="Login"> Login </mat-tab>
         <mat-tab label="Register">
           <h1>Register</h1>
 
@@ -15,9 +16,13 @@
                   placeholder="Email"
                   formControlName="email"
                 />
-                <mat-error *ngIf="form.get('email')!.invalid && form.get('email')!.dirty">{{ form.get('email')?.errors | emailValidationError }}</mat-error>
-              </mat-form-field
-              >
+                <mat-error
+                  *ngIf="form.get('email')!.invalid && form.get('email')!.dirty"
+                  >{{
+                    form.get("email")?.errors | emailValidationError
+                  }}</mat-error
+                >
+              </mat-form-field>
             </div>
             <div>
               <mat-form-field appearance="fill"
@@ -28,9 +33,15 @@
                   placeholder="Password"
                   formControlName="password"
                 />
-                <mat-error *ngIf="form.get('password')!.invalid && form.get('password')!.dirty">{{ form.get('password')?.errors | passwordValidationError }}</mat-error>
-                </mat-form-field
-              >
+                <mat-error
+                  *ngIf="
+                    form.get('password')!.invalid && form.get('password')!.dirty
+                  "
+                  >{{
+                    form.get("password")?.errors | passwordValidationError
+                  }}</mat-error
+                >
+              </mat-form-field>
             </div>
             <div>
               <mat-form-field appearance="fill"
@@ -40,10 +51,11 @@
                   type="text"
                   placeholder="Repeat Password"
                   formControlName="confirmPassword"
-                /><mat-error *ngIf="form.get('confirmPassword')!.invalid"
-                  >Repeat Password is invalid</mat-error
-                ></mat-form-field
-              >
+                />
+                <mat-error *ngIf="form.hasError('confirmPassword')"
+                  >Passwords do not match</mat-error
+                >
+              </mat-form-field>
             </div>
             <div>
               <button type="submit" mat-raised-button color="primary">
@@ -51,9 +63,7 @@
               </button>
             </div>
           </form>
-
         </mat-tab>
-        <mat-tab label="Login"> Login </mat-tab>
       </mat-tab-group>
     </mat-card-content></mat-card
   >
